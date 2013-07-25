@@ -1,0 +1,33 @@
+/* 
+ * File:   main.c
+ * Author: Diego Machado
+ *
+ * Created on July 22, 2013, 8:54 PM
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+ * 
+ */
+int main(int argc, char** argv) {
+
+    FILE *fp;
+
+    int mat, ch, nSem;
+    char nome[30];
+
+    if ((fp = fopen("arq_teste2.txt", "r")) != NULL) {
+        printf("Mat   CH #Sem Nome\n");
+        while (fscanf(fp, "%d %d %d %30[^\n]", &mat, &ch, &nSem, &nome) != EOF) {
+            printf("%3d %5d %3d %30s\n", mat, ch, nSem, nome);
+        }
+    } else
+        printf("O arquivo não existe!\n");
+
+    fclose(fp);
+    
+    return 0;
+}
+
