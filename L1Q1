@@ -1,0 +1,42 @@
+/* 
+ * File:   main.c
+ * Author: Diego Machado
+ *
+ * Created on May 19, 2013, 5:36 PM
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+ * 
+ */
+int main(int argc, char** argv) {
+    int i = 3, n = 10, cont = 0;
+
+    do {
+        printf("\nDigite o numero: ");
+        scanf("%d", &n);
+        cont = n;
+        while (cont > 0) {
+            if (primo(i)) {
+                printf("%d ", i);
+                cont--;
+            }
+            i++;
+        }
+        i = 3;
+    } while (n > 0);
+    
+    return 0;
+}
+
+int primo(int num) {
+    int j;
+    for (j = 2; j <= num / 2; j++) {
+        if (!(num % j)) {
+            return 0;
+        }
+    }
+    return 1;
+}
