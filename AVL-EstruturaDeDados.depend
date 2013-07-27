@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1374890076 source:/home/victor/workspace/AVL-EstruturaDeDados/logic/avl.c
+
+1374891176 source:/home/victor/workspace/AVL-EstruturaDeDados/main.c
+	<stdio.h>
+	<stdlib.h>
+	"logic/operacoesavl.h"
+
+1374892296 source:/home/victor/workspace/AVL-EstruturaDeDados/logic/operacoesavl.c
+	"avl.c"
+	<stdio.h>
+	<stdlib.h>
+
+1374892413 /home/victor/workspace/AVL-EstruturaDeDados/logic/avl.c
+
+1372994523 /home/victor/workspace/AVL-EstruturaDeDados/logic/operacoesavl.c
+	"avl.h"
+	<stdio.h>
+	<stdlib.h>
+
+1374891139 /home/victor/workspace/AVL-EstruturaDeDados/logic/operacoesavl.h
+	"avl.c"
+
+1372996115 source:/home/victor/workspace/AVL-EstruturaDeDados/util/ConsoleUtilities.c
+
