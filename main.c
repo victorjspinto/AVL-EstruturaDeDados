@@ -9,7 +9,7 @@ int lerInteiro() {
 }
 
 void enterParaContinuar() {
-	printf("Pressione enter para continuar\n");
+	printf("\n\nPressione enter para continuar\n");
 	char enter = 0;
 	getchar();
 	while (enter != '\r' && enter != '\n') {
@@ -49,7 +49,8 @@ TAVL* cadastrarAluno(TAVL* t) {
 	matricula = lerInteiro();
 
 	printf("Digite o nome do aluno:\n");
-	scanf("%s", nome);
+	getchar();
+	scanf("%30[^\n]", nome);
 
 	t = insere(t, matricula, nome, 0, 1);
 
@@ -79,16 +80,28 @@ TAVL* alterarAluno(TAVL* t) {
 
 	imprime(t);
 
-	printf("Digite umas das matriculas acimas para selecionar o aluno:\n");
+	TAVL* aluno = NULL;
+	int semestre, cargaHoraria;
+	while(!aluno){
+		printf("Digite umas das matriculas acimas para selecionar o aluno:\n");
+		int matricula = lerInteiro();
+		aluno = buscar(t, matricula);
+	}
 
-	int matricula = lerInteiro();
+	if(aluno){
+		printf("instanciado");
+	}else{
+		printf("nao instanciado");
+	}
 
-	TAVL* aluno = buscar(t, matricula);
 
 	printf("Digite o novo semestre do aluno:\n");
-	aluno->semestre = lerInteiro();
+	semestre = lerInteiro();
 	printf("Digite a nova carga horario concluida do aluno:\n");
-	aluno->cargaCursada = lerInteiro();
+	cargaHoraria = lerInteiro();
+
+	aluno->semestre = semestre;
+	aluno->cargaCursada = cargaHoraria;
 
 	return t;
 }
@@ -101,9 +114,9 @@ TAVL* telaLimparArvore(TAVL* t) {
 					" / /___/ / / / / / / /_/ /  __/ / /_/ /_/ /  / /_/ / /_/ /  / /_/ / /   | |/ / /_/ / /  /  __/\n"
 					"/_____/_/_/ /_/ /_/ .___/\\___/ /___/\\__,_/   \\__,_/\\__,_/   \\__,_/_/    |___/\\____/_/   \\___/ \n"
 					"                 /_/                                                                          \n\n\n");
-	printf("\t Iniciando processo de limpeza da arvore");
+	printf("\t Iniciando processo de limpeza da arvore\n");
 	t = limparArvore(t);
-	printf("\t Processo finalizado com sucesso");
+	printf("\t Processo finalizado com sucesso\n");
 	enterParaContinuar();
 	return t;
 }

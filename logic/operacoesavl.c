@@ -171,16 +171,13 @@ void imprime(TAVL *t) {
 }
 
 TAVL* buscar(TAVL* t, int matricula) {
-	TAVL* result;
 	if (t == NULL)
 		return NULL;
 	if (t->matricula == matricula)
-		result = t;
+		return t;
 	if (t == NULL)
-		result = buscar(t->esq, matricula);
-	if (result == NULL)
-		result = buscar(t->dir, matricula);
-	return result;
+		return buscar(t->esq, matricula);
+	return buscar(t->dir, matricula);
 }
 
 TAVL* limparArvore(TAVL* t) {
