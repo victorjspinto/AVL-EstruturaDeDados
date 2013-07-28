@@ -96,19 +96,19 @@ TAVL* insere(TAVL *t, int matricula, char nome[], int cargaCursada,
 	return t;
 }
 
-TAVL* retira(TAVL *t, int m) {
+TAVL* retira(TAVL *t, int matricula) {
 	if (!t)
 		return t;
-	if (m > t->matricula) {
-		t->dir = retira(t->dir, m);
+	if (matricula > t->matricula) {
+		t->dir = retira(t->dir, matricula);
 		if (fb(t) == 2) {
 			if (fb(t->esq) >= 0)
 				t = rsd(t);
 			else
 				t = rse(t);
 		}
-	} else if (m < t->matricula) {
-		t->esq = retira(t->esq, m);
+	} else if (matricula < t->matricula) {
+		t->esq = retira(t->esq, matricula);
 		if (fb(t) == -2) {
 			if (fb(t->dir) <= 0)
 				t = rse(t);
@@ -121,8 +121,8 @@ TAVL* retira(TAVL *t, int m) {
 			while (p->esq)
 				p = p->esq;
 			t->matricula = p->matricula;
-			p->matricula = m;
-			t->dir = retira(t->dir, m);
+			p->matricula = matricula;
+			t->dir = retira(t->dir, matricula);
 			if (fb(t) == 2) {
 				if (fb(t->esq) >= 0)
 					t = rsd(t);
@@ -186,7 +186,7 @@ TAVL* buscar(TAVL* t, int matricula) {
 TAVL* limparArvore(TAVL* t) {
 	if (t == NULL)
 		return t;
-	if (t->semestre == 4 && t->cargaCursada < 1762) {
+	if (t->semestre >= 8 && t->cargaCursada < 1762) {
 		printf(
 				"Aluno Jubilado\n "
 						"\tNome %s\n"

@@ -1,14 +1,12 @@
-
-void ImprimeTexto(const char text){
+void imprimeTexto(const char text){
     printf("%c ", text);
 }
 
-
-void ImprimeNumero(const int value){
+void imprimeNumero(const int value){
     printf("%c ", value);
 }
 
-void QuebraLinha()
+void quebraLinha()
 {
     printf("\n");
 }
