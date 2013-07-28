@@ -88,13 +88,6 @@ TAVL* alterarAluno(TAVL* t) {
 		aluno = buscar(t, matricula);
 	}
 
-	if(aluno){
-		printf("instanciado");
-	}else{
-		printf("nao instanciado");
-	}
-
-
 	printf("Digite o novo semestre do aluno:\n");
 	semestre = lerInteiro();
 	printf("Digite a nova carga horario concluida do aluno:\n");
@@ -116,7 +109,7 @@ TAVL* telaLimparArvore(TAVL* t) {
 					"                 /_/                                                                          \n\n\n");
 	printf("\t Iniciando processo de limpeza da arvore\n");
 	t = limparArvore(t);
-	printf("\t Processo finalizado com sucesso\n");
+	printf("\n\n Processo finalizado com sucesso\n");
 	enterParaContinuar();
 	return t;
 }
@@ -187,6 +180,7 @@ int main() {
 			break;
 		default:
 			printf("Opcao selecionada invalida!  [%d]\n", opcaoSelecionada);
+			enterParaContinuar();
 		}
 	}
 

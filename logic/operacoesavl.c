@@ -183,37 +183,46 @@ TAVL* buscar(TAVL* t, int matricula) {
 TAVL* limparArvore(TAVL* t) {
 	if (t == NULL)
 		return t;
-	if (t->semestre >= 8 && t->cargaCursada < 1762) {
-		printf(
-				"Aluno Jubilado\n "
-						"\tNome %s\n"
-						"\tMatricula %d\n"
-						"\tCargaHoraria %d\n"
-						"\tSemestre %d\n"
-						"sera jubilado por nao completar metade da carga horario no seu quarto semestre.\n",
-				t->nome, t->matricula, t->cargaCursada, t->semestre);
-		t = retira(t, t->matricula);
-	} else if (t->semestre == 12 && t->cargaCursada < 3524) {
-		printf("Aluno Jubilado\n"
-				"\tNome %s\n"
-				"\tMatricula %d\n"
-				"\tCargaHoraria %d\n"
-				"\tSemestre %d\n"
-				"sera jubilado por nao completar o curso em 12 semestres.\n",
-				t->nome, t->matricula, t->cargaCursada, t->semestre);
-		t = retira(t, t->matricula);
-	} else if (t->cargaCursada == 3524) {
-		printf("Aluno formado\n"
-				"\t Nome %s\n"
-				"\t Matricula %d\n"
-				"\t Semestre %d\n", t->nome, t->matricula, t->semestre);
-		t = retira(t, t->matricula);
-	}
-	if (t) {
-		if (t->dir != NULL)
-			t->dir = limparArvore(t->dir);
-		if (t->esq != NULL)
-			t->esq = limparArvore(t->esq);
-	}
+
+	int changed;
+	do {
+		changed = 0;
+		if (t) {
+			if (t->dir != NULL)
+				t->dir = limparArvore(t->dir);
+			if (t->esq != NULL)
+				t->esq = limparArvore(t->esq);
+			if (t->semestre >= 8 && t->cargaCursada < 1762) {
+				printf(
+						"Aluno Jubilado\n "
+								"\tNome %s\n"
+								"\tMatricula %d\n"
+								"\tCargaHoraria %d\n"
+								"\tSemestre %d\n"
+								"sera jubilado por nao completar metade da carga horario no seu quarto semestre.\n",
+						t->nome, t->matricula, t->cargaCursada, t->semestre);
+				t = retira(t, t->matricula);
+				changed = 1;
+			} else if (t->semestre == 12 && t->cargaCursada < 3524) {
+				printf(
+						"Aluno Jubilado\n"
+								"\tNome %s\n"
+								"\tMatricula %d\n"
+								"\tCargaHoraria %d\n"
+								"\tSemestre %d\n"
+								"sera jubilado por nao completar o curso em 12 semestres.\n",
+						t->nome, t->matricula, t->cargaCursada, t->semestre);
+				t = retira(t, t->matricula);
+				changed = 1;
+			} else if (t->cargaCursada == 3524) {
+				printf("Aluno formado\n"
+						"\t Nome %s\n"
+						"\t Matricula %d\n"
+						"\t Semestre %d\n", t->nome, t->matricula, t->semestre);
+				t = retira(t, t->matricula);
+				changed = 1;
+			}
+		}
+	} while (changed == 1);
 	return t;
 }
