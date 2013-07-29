@@ -120,8 +120,24 @@ TAVL* retira(TAVL *t, int matricula) {
 			TAVL *p = t->dir;
 			while (p->esq)
 				p = p->esq;
+
+			int semestre, cargaHoraria;
+			char nome[50];
+
+			strcpy(nome, t->nome);
+			semestre = t->semestre;
+			cargaHoraria = t->cargaCursada;
+
 			t->matricula = p->matricula;
+			t->cargaCursada = p->cargaCursada;
+			t->semestre = p->semestre;
+			strcpy(t->nome, p->nome);
+
 			p->matricula = matricula;
+			p->cargaCursada = cargaHoraria;
+			p->semestre = semestre;
+			strcpy(p->nome, nome);
+
 			t->dir = retira(t->dir, matricula);
 			if (fb(t) == 2) {
 				if (fb(t->esq) >= 0)
@@ -199,7 +215,7 @@ TAVL* limparArvore(TAVL* t) {
 								"\tMatricula %d\n"
 								"\tCargaHoraria %d\n"
 								"\tSemestre %d\n"
-								"sera jubilado por nao completar metade da carga horario no seu quarto semestre.\n",
+								"\t>>sera jubilado por nao completar metade da carga horario no seu quarto semestre.\n",
 						t->nome, t->matricula, t->cargaCursada, t->semestre);
 				t = retira(t, t->matricula);
 				changed = 1;
@@ -210,7 +226,7 @@ TAVL* limparArvore(TAVL* t) {
 								"\tMatricula %d\n"
 								"\tCargaHoraria %d\n"
 								"\tSemestre %d\n"
-								"sera jubilado por nao completar o curso em 12 semestres.\n",
+								"\t>>sera jubilado por nao completar o curso em 12 semestres.\n",
 						t->nome, t->matricula, t->cargaCursada, t->semestre);
 				t = retira(t, t->matricula);
 				changed = 1;
